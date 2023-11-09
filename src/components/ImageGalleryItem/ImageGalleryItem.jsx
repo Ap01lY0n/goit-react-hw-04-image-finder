@@ -1,31 +1,25 @@
-import { Component } from 'react';
+import React, { useState } from 'react';
 import { ImgGalleryItem, ImageGalleryItemImg } from './ImageGalleryItem.styled';
-import { ModalWindow } from 'components/ModalWindow/ModalWindow';
+import ModalWindow from 'components/ModalWindow/ModalWindow';
 
-export class ImageGalleryItem extends Component {
-  state = {
-    isModalOpen: false,
+const ImageGalleryItem = ({ data, dataModal, tags }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const toggleModal = () => {
+    setIsModalOpen((prevIsModalOpen) => !prevIsModalOpen);
   };
-  toggleModal = () => {
-    this.setState(prevState => ({
-      isModalOpen: !prevState.isModalOpen
-    }));
-  }
-  render() {
-    const { isModalOpen } = this.state;
-    const { data, dataModal, tags } = this.props;
-    return (   
-        <ImgGalleryItem className="galleryItem">
-          <ImageGalleryItemImg src={data} alt={tags} onClick={this.toggleModal}/>
-          <ModalWindow
-            isModalOpen={isModalOpen}
-            closeModal={this.toggleModal}
-            dataModal={dataModal}
-            tags = {tags}
-          />
-        </ImgGalleryItem>
-    );
-  }
-}
 
+  return (
+    <ImgGalleryItem className="galleryItem">
+      <ImageGalleryItemImg src={data} alt={tags} onClick={toggleModal} />
+      <ModalWindow
+        isModalOpen={isModalOpen}
+        closeModal={toggleModal}
+        dataModal={dataModal}
+        tags={tags}
+      />
+    </ImgGalleryItem>
+  );
+};
 
+export default ImageGalleryItem;

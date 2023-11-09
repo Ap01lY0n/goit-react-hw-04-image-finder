@@ -1,7 +1,8 @@
 import { Btn } from "./Button.styled"
 
-export const Button = ({onClick}) => {
+const Button = ({onClick}) => {
     return (
         <Btn onClick={onClick}>Load More</Btn>
     )
 }
+export default Button
