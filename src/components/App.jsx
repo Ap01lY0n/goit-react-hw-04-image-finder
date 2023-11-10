@@ -17,7 +17,11 @@ const App = () => {
   const [perPage] = useState(12);
   const [isLoadMore, setIsLoadMore] = useState(false);
 
+  
   useEffect(() => {
+    if (!query){
+      return
+    }
     const fetchData = async () => {
       try {
         setLoading(true);
